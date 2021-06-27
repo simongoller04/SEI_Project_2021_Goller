@@ -13,32 +13,42 @@ class ViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserv
     
     @IBOutlet weak var save: UIBarButtonItem!
     @IBOutlet weak var canvasView: PKCanvasView!
+    @IBOutlet weak var Label: UILabel!
     
     var toolPicker: PKToolPicker!
     
     var drawing = PKDrawing()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      
-        canvasView.delegate = self
-        canvasView.drawing = drawing
-        
-        canvasView.alwaysBounceVertical = true
-        canvasView.isDirectionalLockEnabled = true
-        canvasView.drawingPolicy = .anyInput
-        
+    override func viewWillAppear(_ animated: Bool) {
         toolPicker = PKToolPicker()
         
         toolPicker.setVisible(true, forFirstResponder: canvasView)
 
         toolPicker.addObserver(canvasView)
         toolPicker.addObserver(self)
+        
+        canvasView.alwaysBounceVertical = true
+        canvasView.isDirectionalLockEnabled = true
+        canvasView.drawingPolicy = .anyInput
+        
         canvasView.becomeFirstResponder()
+        canvasView.reloadInputViews()
+    
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        canvasView.delegate = self
+        canvasView.drawing = drawing
+    
+    }
+    
+    @IBAction func clearCanvas(_ sender: Any) {
+        canvasView.drawing = PKDrawing()
     }
     
     @IBAction func newImage(_ sender: Any) {
-        toolPicker.setVisible(true, forFirstResponder: canvasView)
         let VC = storyboard?.instantiateViewController(identifier: "randomImageVC")
         navigationController?.pushViewController(VC!, animated: true)
     }
@@ -53,6 +63,10 @@ class ViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserv
         UIGraphicsEndImageContext()
         
         if image != nil {
+            Label.text = "Image Saved!"
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.Label.text = ""
+            }
             PHPhotoLibrary.shared().performChanges({ PHAssetChangeRequest.creationRequestForAsset(from: image!)}, completionHandler: {success, error in
             })
         }

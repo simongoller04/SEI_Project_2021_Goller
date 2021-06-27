@@ -8,17 +8,35 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Draw-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="VC" id="BYZ-38-t0r" customClass="ViewController" customModule="Goller_Project" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="PKCanvasView">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Re-dP-yTW">
+                                <rect key="frame" x="107" y="129" width="200" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="9LM-dJ-GC4"/>
+                                    <constraint firstAttribute="width" constant="200" id="mN3-Fv-LTW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9Re-dP-yTW" secondAttribute="bottom" constant="700" id="GKL-Uv-cIz"/>
+                            <constraint firstItem="9Re-dP-yTW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="107" id="ISP-CG-Ld1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9Re-dP-yTW" secondAttribute="trailing" constant="107" id="ilZ-Oh-ZNK"/>
+                            <constraint firstItem="9Re-dP-yTW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="41" id="zVG-Rx-IJR"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Draw" id="4rT-8c-Fuo">
+                    <navigationItem key="navigationItem" id="4rT-8c-Fuo">
                         <rightBarButtonItems>
                             <barButtonItem id="jLf-kt-tnY"/>
                             <barButtonItem title="Item" image="folder" catalog="system" id="oEX-YN-OBm">
@@ -36,9 +54,15 @@
                                     <action selector="saveToCameraRoll:" destination="BYZ-38-t0r" id="5Ct-wu-08j"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem title="Item" image="trash" catalog="system" id="C5a-3H-LrW">
+                                <connections>
+                                    <action selector="clearCanvas:" destination="BYZ-38-t0r" id="uKY-vj-Lr0"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="Label" destination="9Re-dP-yTW" id="X7N-wy-YYb"/>
                         <outlet property="canvasView" destination="8bC-Xf-vdC" id="XMg-I1-Yki"/>
                     </connections>
                 </viewController>
@@ -46,7 +70,7 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="123.88392857142857"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Saved Ideas-->
         <scene sceneID="bKO-KE-Eij">
             <objects>
                 <tableViewController id="RAL-xH-auD" customClass="TableViewController" customModule="Goller_Project" customModuleProvider="target" sceneMemberID="viewController">
@@ -73,7 +97,7 @@
                             <outlet property="delegate" destination="RAL-xH-auD" id="or3-96-37E"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="z5c-HX-6vQ">
+                    <navigationItem key="navigationItem" title="Saved Ideas" id="z5c-HX-6vQ">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="i7q-tT-rkt">
                             <connections>
                                 <action selector="plusButtonTapped:" destination="RAL-xH-auD" id="Ifp-eu-4cU"/>
@@ -154,8 +178,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save ideas for later!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Clq-5D-vSe">
-                                <rect key="frame" x="117.5" y="166" width="179" height="26"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save idea for later!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Clq-5D-vSe">
+                                <rect key="frame" x="122.5" y="166" width="169" height="26"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -227,6 +251,7 @@
         <image name="folder" catalog="system" width="128" height="97"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="sun.max" catalog="system" width="128" height="124"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
