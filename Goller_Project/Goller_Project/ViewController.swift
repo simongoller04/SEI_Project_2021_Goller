@@ -20,7 +20,7 @@ class ViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserv
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+      
         canvasView.delegate = self
         canvasView.drawing = drawing
         
@@ -54,37 +54,8 @@ class ViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserv
         
         if image != nil {
             PHPhotoLibrary.shared().performChanges({ PHAssetChangeRequest.creationRequestForAsset(from: image!)}, completionHandler: {success, error in
-                    //
             })
+        }
     }
-    //    func toolPickerFramesObscuredDidChange(_ toolPicker: PKToolPicker) {
-//        updateLayout(for: toolPicker)
-//    }
-//
-//    func toolPickerVisibilityDidChange(_ toolPicker: PKToolPicker) {
-//        updateLayout(for: toolPicker)
-//    }
-//
-//    func updateLayout(for toolPicker: PKToolPicker) {
-//        let obscuredFrame = toolPicker.frameObscured(in: view)
-//
-//        // If the tool picker is floating over the canvas, it also contains
-//        // undo and redo buttons.
-//        if obscuredFrame.isNull {
-//            canvasView.contentInset = .zero
-//            navigationItem.leftBarButtonItems = []
-//        }
-//
-//        else {
-//            canvasView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: view.bounds.maxY - obscuredFrame.minY, right: 0)
-////            navigationItem.leftBarButtonItems = [undoBarButtonitem, redoBarButtonItem]
-//        }
-//        canvasView.scrollIndicatorInsets = canvasView.contentInset
-//    }
-    
-//    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-//        return UIInterfaceOrientationMask.portrait
-//    }
-}
 }
 
